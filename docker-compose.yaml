@@ -1,0 +1,10 @@
+services:
+  auth-api:
+    image: public.ecr.aws/q2n5r5e8/ozrnds/project-shkedia-CHANGE_ME:${MONTHS_SERVICE_VERSION}
+    container_name: CHANGE_ME
+    env_file: .local/CHANGE_ME.env
+    environment:
+      - DEBUG
+    volumes:
+      - ${HOST_MOUNT}:/temp
+    restart: always

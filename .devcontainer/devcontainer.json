@@ -1,0 +1,8 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "../"
+    },
+    "runArgs": [ "-v", "${localEnv:POSTGRES_CRED_LOCATION}/:/temp/"],
+    "shutdownAction": "stopContainer"
+}
