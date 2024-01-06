@@ -3,9 +3,12 @@ import os
 import logging
 logging.basicConfig(format='%(asctime)s.%(msecs)05d | %(levelname)s | %(filename)s:%(lineno)d | %(message)s' , datefmt='%FY%T')
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+from project_shkedia_models.insights import InsightEngine
 
 class ApplicationConfiguration(BaseSettings):
+    model_config = SettingsConfigDict(env_nested_delimiter='__')
 
     RECONNECT_WAIT_TIME: int = 1
     RETRY_NUMBER: int = 10
@@ -32,11 +35,7 @@ class ApplicationConfiguration(BaseSettings):
     PRIVATE_KEY_LOCATION: str = ".local/data"
 
     # Worker Configuration Values
-    ENGINE_NAME: str = "template-worker"
-    DESCRIPTION: str = "Template for a worker component"
-    INPUT_SOURCE: str = "NOT SET"
-    INPUT_QUEUE_NAME: str = "NOT SET"
-    OUTPUT_EXCHANGE_NAME: str = "NOT SET"
+    ENGINE_DETAILS: InsightEngine
     
     BATCH_SIZE: int = 100
     BATCH_PROCESS_PERIOD_MIN: float = 30
